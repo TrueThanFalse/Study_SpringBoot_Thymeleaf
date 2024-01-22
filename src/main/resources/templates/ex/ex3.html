@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/* layout에 삽입될 뿐이라서 설정 태그들이 필요 없다. */-->
+
+<th:block th:replace="~{layout/layout::setFragment(~{this::content})}">
+<!-- ~(물결표) : 삽입 하겠다는 뜻 -->
+
+	<th:block th:fragment="content">
+		<h3>ex3.html</h3>
+		<h3>[[${arr}]]</h3>
+	</th:block>
+	
+</th:block>

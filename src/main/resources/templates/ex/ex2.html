@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div th:text="${strList}"></div>
+	<div th:text="${map}"></div>
+	<div th:text="${DTO}"></div>
+	
+	<script type="text/javascript" th:inline="javascript">
+		/* 스크립트 태그에 th:inline="javascript" 추가해주면 */
+		/* 타임리프는 jstl처럼 c:set으로 가져오지 않고 값을 바로 자바스크립트에 가져올 수 있다. */
+		
+		const list = [[${strList}]];
+		const map = [[${map}]];
+		const DTO = [[${DTO}]];
+		
+		console.log(list);
+		console.log(map);
+		console.log(DTO);
+	</script>
+	
+</body>
+</html>

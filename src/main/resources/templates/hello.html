@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--/* html 파일 생성 후 html 태그에 직접 http://www.thymeleaf.org 연결해줘야 함  */-->
+<!--/* STS 설정에서 html 템플릿에 추가하여 만들어 둘 수 있다. */-->
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+	<!--/* 주석 처리 구문은 이렇게 사용해 주세요. */-->
+	<!-- 이중 주석 처리를 해야만 웹브라우저의 F12 Elements에 표시되지 않음 -->
+	
+	<h1 th:text="${msg}"></h1>
+	<h1>----- Hello World ~~~</h1>
+	<h1>[[${msg}]]</h1> <!--/* 인라인 태그 형식 */-->
+	<h1>${msg}</h1> <!--/* 인라인 태그 없이 그냥 작성하면 ${} 인식 못함 */-->
+	
+	<div th:with="num1=${10}, num2=${20}">
+		<h3 th:text="${num1+num2}"></h3>
+	</div>
+	<hr>
+	
+	<h1>링크 이동</h1>
+	<h3 th:text="${param.name}"></h3>
+	<h3 th:text="${param.age}"></h3>
+	
+	<a href="/ex/ex1">go to ex/ex1</a>
+	<br>
+	<a href="/ex/ex1?name=bbb&age=30">go to ex/ex1 - 쿼리스트링</a>
+	
+</body>
+</html>

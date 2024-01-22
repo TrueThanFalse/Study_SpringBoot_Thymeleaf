@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<h1>컨트롤러에서 전송한 list 출력 방법</h1>
+	<!-- 태그 내부에 ${}로 표현 하거나 -->
+	<!-- 태그의 InnerText에 인라인 방식으로 표현할 수 있다. -->
+	
+	1.
+	<h2>[[${list}]]</h2>
+	<hr>
+	2.
+	<h2 th:text="${list}"></h2>
+	<hr>
+	
+	<!-- th:each 사용해 보기 -->
+	3.
+	<ul>
+		<li th:each="str:${list}" th:text="${str}"></li>
+	</ul>
+	<hr>
+	4.
+	<ul>
+		<li th:each="str:${list}">[[${str}]]</li>
+	</ul>
+	<hr>
+	
+	<!-- 타임리프 블럭 사용해 보기 -->
+	5.
+	<ul>
+		<th:block th:each="str:${list}">
+			<li>[[${str}]]</li>
+		</th:block>
+	</ul>
+	<hr>
+	6.
+	<ul>
+		<!-- th:each="변수명,상태변수명:컬렉션" -->
+		<li th:each="str, status:${list}">
+			[[${status.count}]] -> [[${str}]]
+		</li>
+	</ul>
+	<hr>
+	7.
+	<ul>
+		<li th:each="str, status:${list}">
+			<span th:if="${status.odd}">ODD - [[${str}]]</span>
+		</li>
+	</ul>
+	<hr>
+	8.
+	<ul>
+		<li th:each="str, status:${list}">
+			<span th:if="${status.odd}">ODD -- [[${str}]]</span>
+			<span th:unless="${status.odd}">EVEN -- [[${str}]]</span>
+		</li>
+	</ul>
+	<hr>
+	9.
+	<ul>
+		<li th:each="str, status:${list}">
+			<span th:text="${status.odd} ? 'ODD ---'+${str} : 'EVEN ---'+${str}"></span>
+		</li>
+	</ul>
+	<hr>
+	10.
+	<ul>
+		<li th:each="str, st:${list}">
+			<th:block th:switch="${st.index % 3}">
+				<span th:case="0">0 -> [[${str}]]</span>
+				<span th:case="1">1 -> [[${str}]]</span>
+				<span th:case="2">2 -> [[${str}]]</span>
+			</th:block>
+		</li>
+	</ul>
+	<hr>
+	
+	11.
+	<h1>링크 이동</h1>
+	<a th:href="@{/hello}">go to /hello</a>
+	<br>
+	<!-- get 방식으로 파라미터 보내는 방법 (쿼리스트링) -->
+	<a th:href="@{/hello(name='aaa',age='20')}">go to /hello - 쿼리스트링</a>
+	<br>
+	<a th:href="@{/hello(name='한글가능',age='20')}">go to /hello - 한글가능</a>
+	
+	<h3 th:text="${param.name}"></h3>
+	<h3 th:text="${param.age}"></h3>
+	
+</body>
+</html>
